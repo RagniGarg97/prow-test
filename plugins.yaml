@@ -1,0 +1,6 @@
+plugins:
+  hemanik/prow-test:
+  - size
+  - cat
+  - dog
+  - trigger
