@@ -12,4 +12,4 @@ presubmits:
         command:
         - printenv
     trigger: "(?m)^/test this"
-    rerun_command: "/test this"s
+    rerun_command: "/test this"
