@@ -1,3 +1,6 @@
 plugins:
   RagniGarg97/prow-test:
   - size
+  - cat 
+  - dog
+  - trigger
