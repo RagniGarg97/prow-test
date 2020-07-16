@@ -4,3 +4,8 @@ plugins:
   - cat 
   - dog
   - trigger
+  prow1/prow-test:
+  - size
+  - cat
+  - dog
+  - trigger
