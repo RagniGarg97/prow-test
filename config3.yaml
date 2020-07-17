@@ -1,0 +1,23 @@
+periodics:
+- interval: 10m
+  name: echo-test
+  spec:
+    containers:
+    - image: alpine
+      command: ["/bin/date"]
+postsubmits:
+  prow1/prow-test:
+  - name: test-postsubmit
+    spec:
+      containers:
+      - image: alpine
+        command: ["/bin/printenv"]
+presubmits:
+  prow1/prow-test:
+  - name: test-presubmit
+    always_run: true
+    skip_report: true
+    spec:
+      containers:
+      - image: alpine
+        command: ["/bin/printenv"]

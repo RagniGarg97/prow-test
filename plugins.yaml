@@ -3,4 +3,11 @@ plugins:
   - size
   - cat
   - dog
+  - updateconfig
+  - trigger
+  prow1/prow-test:
+  - size
+  - cat
+  - dog
+  - updateconfig
   - trigger

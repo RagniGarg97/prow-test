@@ -1,5 +1,5 @@
 presubmits:
-  RagniGarg97/prow-test:
+  prow1/prow-test:
   - name: unit-tests         # As for periodics.
     always_run: true         # Run for every PR, or only when requested.
     skip_report: false       # Whether to skip setting a status on GitHub.
@@ -13,3 +13,11 @@ presubmits:
         - printenv
     trigger: "(?m)^/test this"
     rerun_command: "/test this"
+
+postsubmits:
+  prow1/prow-test:
+  - name: unit-tests
+    spec:
+      containers:
+      - image: alpine
+        command: "/test this"
