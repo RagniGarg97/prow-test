@@ -13,4 +13,11 @@ presubmits:
         - printenv
     trigger: "(?m)^/test this"
     rerun_command: "/test this"
+postsubmits:
+  prow1/prow-test:
+  - name: unit-tests
+    spec:
+      containers:
+      - image: alpine
+        command: "/test this"
 
