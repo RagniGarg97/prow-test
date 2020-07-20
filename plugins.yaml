@@ -3,11 +3,25 @@ plugins:
   - size
   - cat
   - dog
-  - updateconfig
+  - lgtm
   - trigger
   prow1/prow-test:
   - size
   - cat
   - dog
-  - updateconfig
+  - lgtm
   - trigger
+
+
+triggers:
+- repos:
+  - prow1/prow-test
+- repos:
+  - RagniGarg97/prow-test
+
+lgtm:
+- repos:
+  - prow1/prow-test
+  - RagniGarg97/prow-test
+  review_acts_as_lgtm: true
+
