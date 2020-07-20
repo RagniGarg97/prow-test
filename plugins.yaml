@@ -4,12 +4,14 @@ plugins:
   - cat
   - dog
   - lgtm
+  - approve
   - trigger
   prow1/prow-test:
   - size
   - cat
   - dog
   - lgtm
+  - approve
   - trigger
 
 
@@ -18,6 +20,13 @@ triggers:
   - prow1/prow-test
 - repos:
   - RagniGarg97/prow-test
+
+approve:
+- repos:
+  - prow1/prow-test
+  - RagniGarg97/prow-test
+  implicit_self_approve: true
+  lgtm_acts_as_approve: false
 
 lgtm:
 - repos:
