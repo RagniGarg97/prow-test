@@ -1,16 +1,48 @@
-presubmits:
+prowjob_namespace: default
+pod_namespace: test-pods
+log_level: debug
+
+#plank:
+# default_decoration_configs:
+#   '*':
+#     utility_images: # using the tag we identified above
+#       clonerefs: "gcr.io/k8s-prow/clonerefs:v20200710-7fa016752a"
+#       initupload: "gcr.io/k8s-prow/initupload:v20200710-7fa016752a"
+#       entrypoint: "gcr.io/k8s-prow/entrypoint:v20200710-7fa016752a"
+#       sidecar: "gcr.io/k8s-prow/sidecar:v20200710-7fa016752a"
+
+tide:
+  sync_period: 2m
+  merge_method:
+    prow1/prow-test: squash
+  queries:
+    - repos:
+        - prow1/prow-test
+      labels:
+        - lgtm
+periodics:
+- interval: 10m
+  name: my_echo-test
+  #decorate: true
+  spec:
+    containers:
+    - image: alpine
+      command: ["/bin/date"]
+postsubmits:
   prow1/prow-test:
-  - name: unit-tests         # As for periodics.
-    always_run: true         # Run for every PR, or only when requested.
-    skip_report: false       # Whether to skip setting a status on GitHub.
-    context: unit-tests      # Status context. Usually the job name.
-    max_concurrency: 10      # As for postsubmits.
-    agent: kubernetes        # As for periodics.
+  - name: my_test-postsubmit
+    #decorate: true
     spec:
       containers:
       - image: alpine
-        command:
-        - printenv
-    trigger: "(?m)^/test this"
-    rerun_command: "/test this"
-
+        command: ["/bin/printenv"]
+presubmits:
+  prow1/prow-test:
+  - name: my_test-presubmit
+    #decorate: true
+    always_run: true
+    skip_report: true
+    spec:
+      containers:
+      - image: alpine
+        command: ["/bin/printenv"]
